@@ -1,0 +1,21 @@
+# Node dependencies
+node_modules/
+
+# Python dependencies & caches
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Environment variables and secrets
+.env
+.env.local
+
+# Local databases
+instance/
+*.db
+*.sqlite
+
+# Editor configurations
+.vscode/
+.idea/
