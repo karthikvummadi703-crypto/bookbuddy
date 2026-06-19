@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Checks if the user is logged into Firebase Auth
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Checks if the requested document ID matches the logged-in user's UID
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Protection rule for the 'users' collection
+    match /users/{userId} {
+      allow read, write: if isAuthenticated() && isOwner(userId);
+    }
+
+    // Protection rule for the 'schedules' collection
+    match /schedules/{scheduleId} {
+      allow read, write: if isAuthenticated() && request.auth.uid == resource.data.userId;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+    }
+  }
+}
