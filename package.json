@@ -1,0 +1,13 @@
+{
+  "name": "unischedule-app",
+  "version": "1.0.0",
+  "description": "Automated Timetable Management System",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "start": "echo 'Open index.html in a live server container'"
+  },
+  "dependencies": {
+    "firebase": "^10.0.0"
+  }
+}
